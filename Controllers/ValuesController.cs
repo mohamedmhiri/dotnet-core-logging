@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Web;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure;
+using Serilog;
+using Serilog.Formatting.Compact;
 
 namespace LoggingExample.Controllers
 {
@@ -14,6 +20,11 @@ namespace LoggingExample.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            //var ac = new CorrelationIdGenerator();
+            var headers = Request.HttpContext;
+            Console.WriteLine("------------");
+            Log.Information(headers.ToString());
+            Console.WriteLine("------------");
             return new string[] { "value1", "value2" };
         }
 
