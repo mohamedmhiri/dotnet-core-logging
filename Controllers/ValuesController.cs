@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using log4net;
+using Microsoft.Extensions.Logging;
 
 namespace LoggingExample.Controllers
 {
@@ -10,10 +12,16 @@ namespace LoggingExample.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private ILogger log;
+        ValuesController(ILogger<ValuesController> log)
+        {
+            this.log = log;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            log.LogInformation("aaa");
             return new string[] { "value1", "value2" };
         }
 
