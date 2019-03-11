@@ -12,7 +12,7 @@ namespace LoggingExample.Controllers
     public class ValuesController : ControllerBase
     {
         private ILogger log;
-        ValuesController(ILogger<ValuesController> log)
+        public ValuesController(ILogger<ValuesController> log)
         {
             this.log = log;
         }
